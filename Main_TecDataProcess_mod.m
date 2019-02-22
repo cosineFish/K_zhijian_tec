@@ -4,7 +4,7 @@ for i = 1:1:4%后面4个是恒温数据
     format_data = strcat(format_data,' %f');
 end
 %%%%%%%%%打开文件%%%%%%%%%
-[filename,filepath]=uigetfile('*.txt','打开文件');
+[filename,filepath]=uigetfile('E:\辐射计\2018年7月\K直检测试/*.txt','打开恒温文件');
 complete_file = strcat(filepath,filename);
 fidin = fopen(complete_file,'r+');
 %%%%%%%%%读取数据%%%%%%%%%
@@ -15,6 +15,7 @@ fclose(fidin);
 %%%%%%%%%处理数据%%%%%%%%%
 dateStrings = strcat(sourceData{1},sourceData{2});%sourceData{1}为第一列数据
 time = datetime(dateStrings,'InputFormat','uuuu-MM-ddHH:mm:ss');
+NTC = zeros(length(sourceData{1}),4);
 for i = 1:4
     NTC(:,i) = sourceData{2+i};%电压
 end
@@ -27,7 +28,7 @@ if startDate == endDate
     dateStr = startDate;
     xlsFilePath = ['data',startDate,'.xls'];
 else
-    dateStr = [startDate,'~',endDate];
+    dateStr = [startDate,'-',endDate];
     xlsFilePath = ['data',startDate,'_',endDate,'.xls'];
 end
 global rnames;

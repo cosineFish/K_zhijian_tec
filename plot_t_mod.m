@@ -38,5 +38,6 @@ legend('¿ØÎÂµã','²âÎÂµã1','²âÎÂµã2','²âÎÂµã3',...
 set(gca,'layer','top');
 set (gcf,'Position',[100,100,1080,800], 'color','w');
 hold off;
-%save2word([dateStr,'tecReport.doc'],['-f',num2str(figure_num)]);
+%  save2word([dateStr,'tecReport.doc'],['-f',num2str(figure_num)]);
+saveas(gcf,[dateStr,'tec-f',num2str(figure_num)],'png');    
 end
